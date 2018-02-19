@@ -37,21 +37,8 @@ RUN yum install -y -q bc libgomp libXmu libXt tcsh perl \
     && yum clean packages \
     && rm -rf /var/cache/yum/* /tmp/* /var/tmp/* \
     && echo "Downloading FreeSurfer ..." \
-    && curl -sSL --retry 5 https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/6.0.0/freesurfer-Linux-centos6_x86_64-stable-pub-v6.0.0.tar.gz \
+    && curl -sSL --retry 5 https://www.dropbox.com/s/96fejazytcoaiay/freesurfer-Linux-centos6_x86_64-stable-pub-v6.0.0_MinimumForDocker.tgz \
     | tar xz -C /opt \
-    --exclude='freesurfer/trctrain' \
-    --exclude='freesurfer/subjects/fsaverage_sym' \
-    --exclude='freesurfer/subjects/fsaverage3' \
-    --exclude='freesurfer/subjects/fsaverage4' \
-    --exclude='freesurfer/subjects/fsaverage5' \
-    --exclude='freesurfer/subjects/fsaverage6' \
-    --exclude='freesurfer/subjects/cvs_avg35' \
-    --exclude='freesurfer/subjects/cvs_avg35_inMNI152' \
-    --exclude='freesurfer/subjects/bert' \
-    --exclude='freesurfer/subjects/V1_average' \
-    --exclude='freesurfer/average/mult-comp-cor' \
-    --exclude='freesurfer/lib/cuda' \
-    --exclude='freesurfer/lib/qt' \
     && sed -i '$isource $FREESURFER_HOME/SetUpFreeSurfer.sh' $ND_ENTRYPOINT
 ENV FREESURFER_HOME=/opt/freesurfer
 
@@ -65,7 +52,7 @@ RUN yum install -y -q bc libGL libGLU libgomp libICE libjpeg libmng libpng12 lib
     && yum clean packages \
     && rm -rf /var/cache/yum/* /tmp/* /var/tmp/* \
     && echo "Downloading FSL ..." \
-    && curl -sSL --retry 5 https://fsl.fmrib.ox.ac.uk/fsldownloads/fsl-5.0.10-centos6_64.tar.gz \
+    && curl -sSL --retry 5 https://www.dropbox.com/s/jlv3ye9n0zzwmjj/fsl-5.0.10-centos6_64.tar.gz
     | tar zx -C /opt \
     && /bin/bash /opt/fsl/etc/fslconf/fslpython_install.sh -q -f /opt/fsl \
     && sed -i '$iecho Some packages in this Docker container are non-free' $ND_ENTRYPOINT \
