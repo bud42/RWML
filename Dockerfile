@@ -58,6 +58,7 @@ RUN apt-get update && apt-get install -y \
 RUN pip install matplotlib --upgrade
 RUN pip install pandas --upgrade
 RUN pip install seaborn
+RUN pip install pydicom==0.9.9
 
 # Install dax 
 RUN pip install https://github.com/VUIIS/dax/archive/v0.7.1.zip
