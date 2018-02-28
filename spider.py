@@ -26,7 +26,7 @@ outputs = [
 ]
 
 code = r"""# Copy FreeSurfer dirs
-cp -r ${fs_subj_dir}/*/*/*/*/* ${temp_dir}
+cp -r ${fs_subj_dir}/*/*/*/*/*/* ${temp_dir}
 
 # Copy lesion file
 cp ${wml_file} ${temp_dir}/mri/input_lesion.nii.gz
