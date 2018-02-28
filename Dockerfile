@@ -1,13 +1,5 @@
 #FROM conda/miniconda2-centos6
 
-#RUN yum -y update && \
-#    yum install -y -q bzip2 ca-certificates curl epel-release unzip gcc \
-#    && yum clean packages \
-#    && rm -rf /var/cache/yum/* /tmp/* /var/tmp/*
-
-## Install dax
-#RUN pip install https://github.com/VUIIS/dax/archive/v0.7.1.zip
-
 ## Install FreeSurfer v6.0.0
 #RUN yum install -y -q bc libgomp libXmu libXt tcsh perl \
 #    && yum clean packages \
@@ -27,19 +19,6 @@
 #    && /bin/bash /opt/fsl/etc/fslconf/fslpython_install.sh -q -f /opt/fsl
 #ENV FSLDIR=/opt/fsl \
 #    PATH=/opt/fsl/bin:$PATH
-
-## Install recon-stats
-#COPY src /opt/src/
-#WORKDIR /opt/src/recon-stats
-#RUN python setup.py install
-
-# Make sure other stuff is in path
-#RUN chmod +x /opt/src/make_screenshots.sh
-#ENV PATH=/opt/src:$PATH
-
-## Get the spider code
-#COPY spider.py /opt/spider.py
-#ENTRYPOINT ["python", "/opt/spider.py"]
 
 FROM ubuntu:trusty
 
@@ -92,12 +71,12 @@ RUN apt-get update && apt-get install -y \
 libjpeg62 libglu1-mesa libqt4-opengl libqt4-scripttools
 
 # Configure environment
-ENV FSLDIR=/usr/share/fsl/5.0
+ENV FSLDIR=/opt/fsl
 ENV FSLOUTPUTTYPE=NIFTI_GZ
 ENV PATH=/usr/lib/fsl/5.0:$PATH
 ENV FSLMULTIFILEQUIT=TRUE
-ENV POSSUMDIR=/usr/share/fsl/5.0
-ENV LD_LIBRARY_PATH=/usr/lib/fsl/5.0:$LD_LIBRARY_PATH
+ENV POSSUMDIR=/opt/fsl
+ENV LD_LIBRARY_PATH=/opt/fsl:$LD_LIBRARY_PATH
 ENV FSLTCLSH=/usr/bin/tclsh
 ENV FSLWISH=/usr/bin/wish
 ENV FSLOUTPUTTYPE=NIFTI_GZ
@@ -116,9 +95,10 @@ ENV MNI_DATAPATH /opt/freesurfer/mni/data
 ENV FMRI_ANALYSIS_DIR /opt/freesurfer/fsfast
 ENV PERL5LIB /opt/freesurfer/mni/lib/perl5/5.8.5
 ENV MNI_PERL5LIB /opt/freesurfer/mni/lib/perl5/5.8.5
-ENV PATH /opt/freesurfer/bin:/opt/freesurfer/fsfast/bin:/opt/freesurfer/tktools:/opt/freesurfer/mni/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ENV PATH=$PATH:/opt/freesurfer/bin:/opt/freesurfer/fsfast/bin:/opt/freesurfer/tktools:/opt/freesurfer/mni/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ENV PYTHONPATH=""
 ENV FS_LICENSE=/opt/license.txt
+RUN touch /opt/license.txt
 
 # Make sure other stuff is in path
 COPY src /opt/src/
