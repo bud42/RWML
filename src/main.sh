@@ -22,8 +22,8 @@ echo $SUBJECTS_DIR
 SUBJECT=`basename $PARENT1`
 echo $SUBJECT
 #===============================================================================
-export FREESURFER_HOME=/scratch/mcr/freesurfer
-source $FREESURFER_HOME/SetUpFreeSurfer.sh
+#export FREESURFER_HOME=/scratch/mcr/freesurfer
+#source $FREESURFER_HOME/SetUpFreeSurfer.sh
 #===============================================================================
 # Make wmparc2
 
