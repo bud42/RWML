@@ -33,7 +33,7 @@ cp ${wml_file} ${temp_dir}/mri/input_lesion.nii.gz
 
 # Change directory and run it
 cd ${temp_dir}/mri
-sh ${src_path}/main.sh
+/bin/bash ${src_path}/main.sh
 
 # make_pdf
 convert -size 50x50 xc:transparent -draw "text 0,25 ${fs_subj_dir}" ${temp_dir}/rwml.pdf
