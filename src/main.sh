@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Prepare dirs
 #RWML=/gpfs21/scratch/boydb1/dev-LST_per_lobe/XXXX_RWML_v1
 #mkdir $RWML
