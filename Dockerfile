@@ -57,7 +57,7 @@ ENV FSLDIR=/opt/fsl \
     
 # Install FreeSurfer v6.0.1
 RUN apt-get update -qq && apt-get install -yq --no-install-recommends \
-    bc libgomp1 libxmu6 libxt6 tcsh perl tar perl-modules imagemagick \
+    bc libgomp1 libxmu6 libxt6 tcsh perl tar perl-modules \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && echo "Downloading FreeSurfer ..." \
@@ -99,6 +99,12 @@ ENV PATH=$PATH:/opt/freesurfer/bin:/opt/freesurfer/fsfast/bin:/opt/freesurfer/tk
 ENV PYTHONPATH=""
 ENV FS_LICENSE=/opt/license.txt
 RUN touch /opt/license.txt
+
+# Install packages needed make screenshots
+RUN apt-get update && apt-get install -y \
+    imagemagick ghostscript libgs-dev \
+    && apt-get clean \
+&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Make sure other stuff is in path
 COPY src /opt/src/
