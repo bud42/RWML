@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y \
     python-urllib3 python-pandas
 
 # Install dax 
+RUN pip install matplotlib==2.2.2
 RUN pip install dax==0.8.0
 
 # Install FSL
