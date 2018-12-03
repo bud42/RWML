@@ -3,7 +3,7 @@ from dax import AutoSpider
 
 name = 'RWML'
 
-version = '1.0.3'
+version = '1.0.1'
 
 exe_lang = 'bash'
 
