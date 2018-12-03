@@ -15,7 +15,6 @@ RUN apt-get update && apt-get install -y \
 
 # Install dax 
 RUN pip install dax==0.8.0
-RUN pip install seaborn
 
 # Install FSL
 RUN apt-get update -qq && apt-get install -yq --no-install-recommends \
