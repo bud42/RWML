@@ -1,25 +1,3 @@
-#FROM conda/miniconda2-centos6
-
-## Install FreeSurfer v6.0.0
-#RUN yum install -y -q bc libgomp libXmu libXt tcsh perl \
-#    && yum clean packages \
-#    && rm -rf /var/cache/yum/* /tmp/* /var/tmp/*
-#RUN echo "Downloading FreeSurfer ..." \
-#    && curl -sSL --retry 5 \
-#    https://www.dropbox.com/s/96fejazytcoaiay/freesurfer-Linux-centos6_x86_64-stable-pub-v6.0.0_MinimumForDocker.tgz \
-#    | tar xz -C /opt
-#ENV FREESURFER_HOME=/opt/freesurfer
-
-## Install FSL v5.0.10
-#RUN yum install -y -q bc libGL libGLU libgomp libICE libjpeg libmng libpng12 libSM libX11 libXcursor libXext libXft libXinerama libXrandr libXt \
-#    && yum clean packages \
-#    && rm -rf /var/cache/yum/* /tmp/* /var/tmp/* \
-#    && echo "Downloading FSL ..." \
-#    && curl -sSL --retry 5 https://www.dropbox.com/s/jlv3ye9n0zzwmjj/fsl-5.0.10-centos6_64.tar.gz | tar zx -C /opt \
-#    && /bin/bash /opt/fsl/etc/fslconf/fslpython_install.sh -q -f /opt/fsl
-#ENV FSLDIR=/opt/fsl \
-#    PATH=/opt/fsl/bin:$PATH
-
 FROM ubuntu:trusty
 
 RUN apt-get update -qq && apt-get install -yq --no-install-recommends  \
@@ -34,8 +12,6 @@ RUN apt-get update && apt-get install -y \
     python-pip libfreetype6-dev pkg-config libxml2-dev libxslt1-dev \
     python-dev zlib1g-dev python-numpy python-scipy python-requests \
     python-urllib3 python-pandas
-#RUN pip install matplotlib --upgrade
-#RUN pip install pandas --upgrade
 
 # Install dax 
 RUN pip install dax==0.8.0
