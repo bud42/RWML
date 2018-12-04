@@ -36,7 +36,7 @@ cd ${temp_dir}/mri
 /bin/bash ${src_path}/main.sh
 
 # make_pdf
-convert -size 50x50 xc:transparent -draw "text 0,25 ${fs_subj_dir}" ${temp_dir}/rwml.pdf
+convert -size 50x50 xc:transparent -draw "text 0,25 rwml" ${temp_dir}/rwml.pdf
 """
 
 if __name__ == '__main__':
