@@ -92,3 +92,6 @@ RUN mkdir /INPUTS /OUTPUTS
 # Get the spider code
 COPY spider.py /opt/spider.py
 ENTRYPOINT ["python", "/opt/spider.py"]
+
+# Silly fix for ImageMagick
+COPY policy.xml /etc/ImageMagick/policy.xml
